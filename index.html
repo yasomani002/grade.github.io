@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Student Grade</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <div class="left">
+            <h3>Enter Your Mark :-</h3>
+            <div class="app-form-group">
+                <input type="text" class="app-form-control" placeholder="Mathematics" id="wd" maxlength="3">
+            </div>
+
+            <div class="app-form-group">
+                <input type="text" class="app-form-control" placeholder="Science" id="maths">
+            </div>
+
+            <div class="app-form-group">
+                <input type="text" class="app-form-control" placeholder="Computer" id="comp">
+            </div>
+
+            <div class="app-form-group">
+                <input type="text" class="app-form-control" placeholder="Physics" id="phy">
+            </div>
+
+            <div class="app-form-group">
+                <!-- <input type="button" name="" value="ShowPercentage" class="app-from-button"  onclick="calcy()" > -->
+                <button type="button" name="" value="ShowPercentage" class="app-from-button" onclick="calcy()">Submit
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="right">
+            <div class="app-form-group showdata">
+                <p id="showData"></p>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const calcy = () => {
+            let wd = document.getElementById('wd').value;
+            let maths = document.getElementById('maths').value;
+            let comp = document.getElementById('comp').value;
+            let phy = document.getElementById('phy').value;
+            let grade = "";
+
+            let totalGrades = parseFloat(wd) + parseFloat(maths) + parseFloat(comp) + parseFloat(phy);
+            // alert(totalGrades);
+
+            let perc = (totalGrades / 400) * 100;
+            // alert(perc);
+
+            if (wd && maths && comp && phy > 100) {
+                document.getElementById('showData').innerHTML = 'Mark more than 100 not accepated'
+
+            }
+            else {
+                if (totalGrades < 400) {
+                    if (perc <= 100 && perc >= 80) {
+                        grade = "A";
+                    } else if (perc <= 79 && perc >= 60) {
+                        grade = "B";
+                    } else if (perc <= 59 && perc >= 40) {
+                        grade = "C";
+                    } else { grade = "F"; }
+
+                    if (perc >= 39.5) {
+                        document.getElementById('showData').innerHTML = ` Out of 400 Your Total is ${totalGrades}.
+                <br> Your Percentage is ${perc}%.
+                <br> Your Grade is ${grade}.
+                <br> You are <span style="color:green" >Pass</span>.`
+                    } else {
+                        document.getElementById('showData').innerHTML = ` Out of 400 Your Total is ${totalGrades}.
+                <br> Your Percentage is ${perc}%.
+                <br> Your Grade is ${grade}.
+                <br> You are <span style="color:red;" >Fail</span>.`
+                    }
+                }
+                else {
+                    document.getElementById('showData').innerHTML = 'Input Valid Data'
+                }
+            }
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
